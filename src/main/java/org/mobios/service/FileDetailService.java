@@ -11,6 +11,7 @@ public class FileDetailService {
     public String generateNextId() throws SQLException {
         FileDetailRepository fileDetailRepository = new FileDetailRepository();
         List<String>list =fileDetailRepository.getLastId();
+        System.out.println(list);
         if (list == null || list.isEmpty()) {
             return "F001";
         }
@@ -27,6 +28,9 @@ public class FileDetailService {
 
     public void addFile(FIleDetail fileInfo) throws SQLException {
        FileDetailRepository fileRepo = new FileDetailRepository();
-       fileRepo.saveFileDetail(fileInfo);
+        System.out.println(fileInfo);
+
+        fileRepo.saveFileDetail(fileInfo);
     }
+
 }

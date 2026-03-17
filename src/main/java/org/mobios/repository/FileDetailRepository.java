@@ -19,7 +19,6 @@ public class FileDetailRepository {
     public List<String> getLastId() throws SQLException {
        PreparedStatement pstm =  connnection.prepareStatement("Select fileId from fileDetail");
        ResultSet resultSet =pstm.executeQuery();
-       resultSet.next();
        List<String> fileIds = new ArrayList<>();
        while(resultSet.next()){
            fileIds.add(resultSet.getString(1));
@@ -28,10 +27,13 @@ public class FileDetailRepository {
     }
 
     public void saveFileDetail(FIleDetail fIleDetail) throws SQLException {
+        System.out.println("OK");
         PreparedStatement pstm =  connnection.prepareStatement("INSERT INTO fileDetail VALUES(?,?,?,?)");
         pstm.setObject(1,fIleDetail.getFileId());
         pstm.setObject(2,fIleDetail.getUserId());
         pstm.setObject(3,fIleDetail.getFileName());
         pstm.setObject(4,fIleDetail.getUploadDate());
+
+        System.out.println(pstm.executeUpdate());
     }
 }
